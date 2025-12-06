@@ -11,14 +11,15 @@ def read_html(file_path):
   with open (file_path, "r") as handle:
      return handle.read()
 
-def write_html(file_path):
+def write_html():
   output =''
   html = read_html("animals_template.html")
   for animal_data in animals_data:
     output += f"Name: {animal_data['name']}\n"
     output += f"Diet: {animal_data['characteristics']['diet']}\n"
-  html.replace("__REPLACE_ANIMALS_INFO__",output)
-  return html
+  final_output = html.replace("__REPLACE_ANIMALS_INFO__",output)
+  with open("animals.html", "w", encoding="utf-8") as output:
+      output.write(final_output)
 
-print(write_html(''))
+write_html()
 
